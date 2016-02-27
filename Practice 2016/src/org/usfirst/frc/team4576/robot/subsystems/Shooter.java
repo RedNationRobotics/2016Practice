@@ -47,25 +47,25 @@ public class Shooter extends Subsystem {
 
 	public void up() {
 		//shooterElevR.set(-.5);
-		shooterElevL.set(.5);
+		shooterElevL.set(-.25);
 		
 
 	}
 
 	public void down() {
 		//shooterElevR.set(.5);
-		shooterElevL.set(-.5);
+		shooterElevL.set(.25);
 		
 	}
 	public void in(){
-		shooterWheelL.set(-.5);
+		shooterWheelL.set(-1);
 		//shooterWheelR.set(.5);
 				
 		
 	}
 	
 	public void out(){
-		shooterWheelL.set(.5);
+		shooterWheelL.set(1);
 		//shooterWheelR.set(-.5);
 				
 	} 
@@ -85,7 +85,7 @@ public class Shooter extends Subsystem {
 		
 		//System.out.println("gamepad control");
 		//System.out.println(stick.getRawAxis(3) +  " " + stick.getRawAxis(2));
-			/*if(stick.getRawAxis(3) - stick.getRawAxis(2) < 0 && stick.getRawAxis(3) - stick.getRawAxis(2) > -0.1)
+			if(stick.getRawAxis(3) - stick.getRawAxis(2) < 0 && stick.getRawAxis(3) - stick.getRawAxis(2) > -0.1)
 			{
 				//shooterElevR.set(0);
 				shooterElevL.set(0);
@@ -99,7 +99,7 @@ public class Shooter extends Subsystem {
 				//shooterElevR.set(0);
 				shooterElevL.set(0);
 				return;
-			} */
+			} 
 		
 		
 		//shooterElevR.set(stick.getRawAxis(3) - stick.getRawAxis(2));
