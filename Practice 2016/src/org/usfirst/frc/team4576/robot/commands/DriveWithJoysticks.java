@@ -10,7 +10,7 @@ public class DriveWithJoysticks extends Command {
 		
 		requires(Robot.chassis);
 		//Need requires to run command
-		requires(Robot.shooter);
+		requires(Robot.shooter); //<======HERE IS YOUR PROBLEM, IT WILL CANCEL THIW TASK WHEN ANY OTHER TASK REQUIRING SHOOTER RUNS (I.E. YOUR BUTTONS)
         Robot.chassis.initTeleop();
         
 	}
