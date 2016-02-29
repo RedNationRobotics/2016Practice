@@ -15,14 +15,14 @@ public class Shooter extends Subsystem {
 		shooterWheelR.changeControlMode(CANTalon.TalonControlMode.Follower);
 		shooterWheelR.set(shooterWheelL.getDeviceID());
 		shooterWheelR.reverseOutput(true);
-		
-		shooterElevR.changeControlMode(CANTalon.TalonControlMode.Follower);
-		shooterElevR.set(shooterElevL.getDeviceID());
-		shooterElevR.reverseOutput(true);
+		//Because we are dumb, shooterElevL must follow shooterElevR on Practice Bot, but vice versa on Comp Bot
+		shooterElevL.changeControlMode(CANTalon.TalonControlMode.Follower);
+		shooterElevL.set(shooterElevR.getDeviceID());
+		shooterElevL.reverseOutput(true);
 	}
 	
-	CANTalon shooterElevL = new CANTalon(4);
-	CANTalon shooterElevR = new CANTalon(5);
+	public CANTalon shooterElevL = new CANTalon(4);
+	public CANTalon shooterElevR = new CANTalon(5);
 	CANTalon shooterWheelL = new CANTalon(6);
 	CANTalon shooterWheelR = new CANTalon(7);
 	
@@ -44,7 +44,7 @@ public class Shooter extends Subsystem {
 	protected void initDefaultCommand() {
 
 	}
-
+	
 	public void up() {
 		//shooterElevR.set(-.5);
 		shooterElevL.set(-.25);
@@ -57,6 +57,7 @@ public class Shooter extends Subsystem {
 		shooterElevL.set(.25);
 		
 	}
+	
 	public void in(){
 		shooterWheelL.set(-1);
 		//shooterWheelR.set(.5);
@@ -88,7 +89,7 @@ public class Shooter extends Subsystem {
 			if(stick.getRawAxis(3) - stick.getRawAxis(2) < 0 && stick.getRawAxis(3) - stick.getRawAxis(2) > -0.1)
 			{
 				//shooterElevR.set(0);
-				shooterElevL.set(0);
+				shooterElevR.set(0);
 				return;
 			}
 		
@@ -97,13 +98,13 @@ public class Shooter extends Subsystem {
 			if(stick.getRawAxis(3) - stick.getRawAxis(2) > 0 && stick.getRawAxis(3) - stick.getRawAxis(2) < 0.1)
 			{
 				//shooterElevR.set(0);
-				shooterElevL.set(0);
+				shooterElevR.set(0);
 				return;
 			} 
 		
 		
-		//shooterElevR.set(stick.getRawAxis(3) - stick.getRawAxis(2));
-		shooterElevL.set(stick.getRawAxis(3) - stick.getRawAxis(2));
+		shooterElevR.set(stick.getRawAxis(3) - stick.getRawAxis(2));
+		//shooterElevL.set(stick.getRawAxis(3) - stick.getRawAxis(2));
 	}
 
 	

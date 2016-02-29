@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Joystick driveStick = new Joystick(0);
 	public static Joystick shooterStick = new Joystick(1);
-
+	
    Command teleopCommand;
    Command compressorStart;
   
@@ -45,6 +45,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		teleopCommand = new DriveWithJoysticks();
 		compressorStart = new AutoEnableCompressor();
+		
+		
 				
         // instantiate the command used for the autonomous period
         
@@ -61,8 +63,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
 		teleopCommand.start();
 		compressorStart.start();
-		//Robot.shooter.shooterWheelR.set(0);
-       
+		   
     }
 
     /**
