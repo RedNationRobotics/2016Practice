@@ -19,7 +19,7 @@ public class ShooterStop extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.stopWheel();
+    	Robot.shooter.stop();
     	
     }
 

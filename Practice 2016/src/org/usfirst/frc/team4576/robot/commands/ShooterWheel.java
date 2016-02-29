@@ -38,7 +38,7 @@ public class ShooterWheel extends Command{
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		Robot.shooter.stopWheel();
+		Robot.shooter.stop();
 	}
 
 	@Override

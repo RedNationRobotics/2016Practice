@@ -6,10 +6,11 @@ import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveWithJoysticks extends Command {
+	
 	public DriveWithJoysticks(){
-		
-		requires(Robot.chassis);
 		//Need requires to run command
+		requires(Robot.chassis);
+		requires(Robot.elevator);
 		//requires(Robot.shooter); //<======HERE IS YOUR PROBLEM, IT WILL CANCEL THIS TASK WHEN ANY OTHER TASK REQUIRING SHOOTER RUNS (I.E. YOUR BUTTONS)
         Robot.chassis.initTeleop();
         
@@ -32,9 +33,9 @@ public class DriveWithJoysticks extends Command {
     	//SmartDashboard.putNumber("accelZ: ",Robot.accel.getZ());
 		
 		// gamePadControl required in execute loop
-		Robot.shooter.gamePadControl(Robot.shooterStick);
+		Robot.elevator.gamePadControl(Robot.shooterStick);
 		
-		int absolutePosition = Robot.shooter.shooterElevR.getPulseWidthPosition();//This creates absolute position int
+		int absolutePosition = Robot.elevator.ElevR.getPulseWidthPosition();//This creates absolute position int
 		//*****This is test code for printing CANTalon data to console*****
 		//double currentAmps = Robot.chassis.tsrxL.getOutputCurrent();
 		//System.out.println("Current Amps" + currentAmps);

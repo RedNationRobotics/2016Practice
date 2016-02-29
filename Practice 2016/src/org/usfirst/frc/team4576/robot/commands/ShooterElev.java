@@ -10,7 +10,7 @@ public class ShooterElev extends Command{
 	public ShooterElev(boolean up)
 	{
 		this.up = up;
-		requires(Robot.shooter);
+		requires(Robot.elevator);
 	}
 
 	@Override
@@ -21,9 +21,9 @@ public class ShooterElev extends Command{
 	@Override
 	protected void execute() {
 		if(up){
-			Robot.shooter.up();
+			Robot.elevator.up();
 		}else{
-			Robot.shooter.down();
+			Robot.elevator.down();
 			
 		}
 		
