@@ -34,7 +34,8 @@ public class Robot extends IterativeRobot {
 	
    Command teleopCommand;
    Command compressorStart;
-  
+ 
+   String VERSION = "1.43 ALPHA";
     
 
     /**
@@ -42,8 +43,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	//System.out.println(
-				//"RNR DANK MEME BOT VROOME VROOM GO FAST WATCH OUT HURT" + VERSION + "1.03" + "is loading.....");
+    	System.out.println("RNR 2016 Practice Code Version " + VERSION + " is loading... But will it work?");
 		oi = new OI();
 		teleopCommand = new DriveWithJoysticks();
 		compressorStart = new AutoEnableCompressor();
