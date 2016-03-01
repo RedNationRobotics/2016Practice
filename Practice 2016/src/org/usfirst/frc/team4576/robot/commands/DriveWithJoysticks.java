@@ -37,7 +37,7 @@ public class DriveWithJoysticks extends Command {
 		// gamePadControl required in execute loop
 		Robot.elevator.gamePadControl(Robot.shooterStick);
 		
-		int absolutePosition = Robot.elevator.ElevR.getPulseWidthPosition();//This creates absolute position int
+		int absolutePosition = Robot.elevator.elevR.getPulseWidthPosition();//This creates absolute position int
 		//*****This is test code for printing CANTalon data to console*****
 		//double currentAmps = Robot.chassis.tsrxL.getOutputCurrent();
 		//System.out.println("Current Amps" + currentAmps);
