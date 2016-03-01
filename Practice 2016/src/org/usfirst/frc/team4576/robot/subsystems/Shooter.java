@@ -31,14 +31,14 @@ public class Shooter extends Subsystem {
 	
 	public void in(){
 		shooterWheelL.set(-1);
-		//shooterWheelR.set(.5);
+		//shooterWheelR.set(1);
 				
 		
 	}
 	
 	public void out(){
 		shooterWheelL.set(1);
-		//shooterWheelR.set(-.5);
+		//shooterWheelR.set(-1);
 				
 	} 
 
