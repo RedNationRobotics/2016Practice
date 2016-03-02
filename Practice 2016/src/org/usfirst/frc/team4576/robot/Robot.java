@@ -26,67 +26,65 @@ public class Robot extends IterativeRobot {
 	public static final Pneumatics pneumatics = new Pneumatics();
 	public static final Shooter shooter = new Shooter();
 	public static final Elevator elevator = new Elevator();
-	//public static final OnboardAccel accel = new OnboardAccel();
-	
+	// public static final OnboardAccel accel = new OnboardAccel();
+
 	public static OI oi;
 	public static Joystick driveStick = new Joystick(0);
 	public static Joystick shooterStick = new Joystick(1);
-	
-   Command teleopCommand;
-   Command compressorStart;
- 
-   String VERSION = "1.43 ALPHA";
-    
 
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
-    public void robotInit() {
-    	System.out.println("RNR 2016 Practice Code Version " + VERSION + " is loading... But will it work?");
+	Command teleopCommand;
+	Command compressorStart;
+
+	String VERSION = "1.0 BETA";
+
+	/**
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
+	 */
+	public void robotInit() {
+		System.out.println("RNR 2016 Practice Code Version " + VERSION + " is loading... But will it work?");
 		oi = new OI();
 		teleopCommand = new DriveWithJoysticks();
 		compressorStart = new AutoEnableCompressor();
-		
-		
-				
-        // instantiate the command used for the autonomous period
-        
-    }
-	
+
+		// instantiate the command used for the autonomous period
+
+	}
+
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		
-	}
-	public void autonomousInit() {
-		//added <autochooser.getSelected();> might be wrong (s)
+
 	}
 
-    public void teleopInit() {
+	public void autonomousInit() {
+		// added <autochooser.getSelected();> might be wrong (s)
+	}
+
+	public void teleopInit() {
 		teleopCommand.start();
 		compressorStart.start();
-		   
-    }
 
-    /**
-     * This function is called when the disabled button is hit.
-     * You can use it to reset subsystems before shutting down.
-     */
-    public void disabledInit(){
+	}
 
-    }
+	/**
+	 * This function is called when the disabled button is hit. You can use it
+	 * to reset subsystems before shutting down.
+	 */
+	public void disabledInit() {
 
-    /**
-     * This function is called periodically during operator control
-     */
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-    }
-    
-    /**
-     * This function is called periodically during test mode
-     */
-    public void testPeriodic() {
-        LiveWindow.run();
-    }
+	}
+
+	/**
+	 * This function is called periodically during operator control
+	 */
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+	}
+
+	/**
+	 * This function is called periodically during test mode
+	 */
+	public void testPeriodic() {
+		LiveWindow.run();
+	}
 }
