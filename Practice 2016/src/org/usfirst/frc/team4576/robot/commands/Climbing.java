@@ -13,7 +13,7 @@ public class Climbing extends Command{
 	}
 	@Override
 	protected void initialize() {
-		Robot.pneumatics.Climb();
+		Robot.pneumatics.toggleClimb();
 		//System.out.println("button pressed. value changing to: " + value);
 	}
 

@@ -63,9 +63,11 @@ public class OI {
 	// Example of a button assigned to the left bumper-
 	Button rb = new JoystickButton(Robot.shooterStick, 5);
 	Button lb = new JoystickButton(Robot.shooterStick, 6);
-    Button bly = new JoystickButton(Robot.driveStick, 4);
+    Button dsY = new JoystickButton(Robot.driveStick, 4);
 	Button blx = new JoystickButton(Robot.driveStick, 3);
-	Button rs = new JoystickButton(Robot.shooterStick, 10);
+	Button r3 = new JoystickButton(Robot.shooterStick, 10);
+	
+	
 
 	public OI() {
 		blx.whenPressed(new Shift());
@@ -73,7 +75,8 @@ public class OI {
 		lb.whenPressed(new ShooterWheel(false));
 		rb.whenReleased(new ShooterStop());
 		lb.whenReleased(new ShooterStop());
-		rs.whenPressed(new Push());
-		bly.whenPressed(new Climbing());
+		r3.whenPressed(new Push());
+		
+		dsY.whenPressed(new Climbing());
 	}
 }
