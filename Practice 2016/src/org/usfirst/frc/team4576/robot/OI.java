@@ -61,21 +61,22 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 // button.whenReleased(new ExampleCommand());
 public class OI {
 	// Example of a button assigned to the left bumper-
-	Button rb = new JoystickButton(Robot.shooterStick, 5);
-	Button lb = new JoystickButton(Robot.shooterStick, 6);
+	Button ssRB = new JoystickButton(Robot.shooterStick, 5);
+	Button ssLB = new JoystickButton(Robot.shooterStick, 6);
     Button dsY = new JoystickButton(Robot.driveStick, 4);
-	Button blx = new JoystickButton(Robot.driveStick, 3);
-	Button r3 = new JoystickButton(Robot.shooterStick, 10);
+	Button dsX = new JoystickButton(Robot.driveStick, 3);
+	Button ssR3 = new JoystickButton(Robot.shooterStick, 10);
 	
 	
 
 	public OI() {
-		blx.whenPressed(new Shift());
-		rb.whenPressed(new ShooterWheel(true));
-		lb.whenPressed(new ShooterWheel(false));
-		rb.whenReleased(new ShooterStop());
-		lb.whenReleased(new ShooterStop());
-		r3.whenPressed(new Push());
+		dsX.whenPressed(new Shift());
+		ssRB.whenPressed(new ShooterWheel(true));
+		ssLB.whenPressed(new ShooterWheel(false));
+		ssRB.whenReleased(new ShooterStop());
+		ssLB.whenReleased(new ShooterStop());
+		ssR3.whenPressed(new Push());
+		ssR3.whenReleased(new Push());
 		
 		dsY.whenPressed(new Climbing());
 	}

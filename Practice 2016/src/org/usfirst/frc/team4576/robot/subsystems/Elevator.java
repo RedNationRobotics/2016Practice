@@ -19,8 +19,8 @@ public class Elevator extends Subsystem {
 		public CANTalon elevL = new CANTalon(4);
 		public CANTalon elevR = new CANTalon(5);
 	/** save the target position to servo to */
-	double targetPos1 = (double) (65.0000000/360.00000000);
-	double targetPos2 = (double) (95.0000000/360.00000000);
+	double targetPos1 = (double) (75.0000000/360.00000000);//change the value infront of /360.0000000 if you want to mess with angles
+	double targetPos2 = (double) (90.0000000/360.00000000);//MAKE SRE TO KEEP ALL THE FLOATING ZEROS!
 
 	boolean firstRun = true;
 	public Elevator() {
@@ -59,9 +59,9 @@ public class Elevator extends Subsystem {
 		/* set closed loop gains in slot0 */
 		elevR.setProfile(0);
 		elevR.setF(0.0);
-		elevR.setP(1.0);
-		elevR.setI(0.0);
-		elevR.setD(0.0);
+		elevR.setP(0.8);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
+		elevR.setI(0.0);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
+		elevR.setD(0.0);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
 		
 		
 		
