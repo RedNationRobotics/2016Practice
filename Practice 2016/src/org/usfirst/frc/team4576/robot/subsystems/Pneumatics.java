@@ -22,7 +22,7 @@ public class Pneumatics extends Subsystem {
 		c.setClosedLoopControl(true);
 	}
 
-		public void setShift(boolean closed) {
+	public void setShift(boolean closed) {
 		s0.set(closed);
 	}
 

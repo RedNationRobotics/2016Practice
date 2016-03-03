@@ -20,7 +20,7 @@ public class Elevator extends Subsystem {
 		public CANTalon elevR = new CANTalon(5);
 	/** save the target position to servo to */
 	double targetPos1 = (double) (75.0000000/360.00000000);//change the value infront of /360.0000000 if you want to mess with angles
-	double targetPos2 = (double) (90.0000000/360.00000000);//MAKE SRE TO KEEP ALL THE FLOATING ZEROS!
+	double targetPos2 = (double) (90.0000000/360.00000000);//MAKE SURE TO KEEP ALL THE FLOATING ZEROS!
 
 	boolean firstRun = true;
 	public Elevator() {

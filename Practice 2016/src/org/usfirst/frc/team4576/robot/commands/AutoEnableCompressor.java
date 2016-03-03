@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoEnableCompressor extends Command {
 
-	public AutoEnableCompressor()
-	{
+	public AutoEnableCompressor() {
 		requires(Robot.pneumatics);
 	}
+
 	@Override
 	protected void initialize() {
 		Robot.pneumatics.setAutoEnabled();
@@ -18,7 +18,7 @@ public class AutoEnableCompressor extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -30,15 +30,13 @@ public class AutoEnableCompressor extends Command {
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
-
-

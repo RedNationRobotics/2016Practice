@@ -4,10 +4,10 @@ import org.usfirst.frc.team4576.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShooterWheel extends Command{
+public class ShooterWheel extends Command {
 	private boolean in = true;
-	public ShooterWheel(boolean in)
-	{
+
+	public ShooterWheel(boolean in) {
 		this.in = in;
 		requires(Robot.shooter);
 	}
@@ -15,9 +15,9 @@ public class ShooterWheel extends Command{
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		if(in){
+		if (in) {
 			Robot.shooter.in();
-		}else{
+		} else {
 			Robot.shooter.out();
 		}
 	}
@@ -25,13 +25,13 @@ public class ShooterWheel extends Command{
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-	
+
 	}
 
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		//changed to true to check issues
+		// changed to true to check issues
 		return false;
 	}
 
@@ -44,7 +44,7 @@ public class ShooterWheel extends Command{
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
