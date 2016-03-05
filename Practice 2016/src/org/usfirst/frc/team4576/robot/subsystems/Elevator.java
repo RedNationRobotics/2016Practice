@@ -20,7 +20,7 @@ public class Elevator extends Subsystem {
 		public CANTalon elevR = new CANTalon(5);
 	/** save the target position to servo to */
 	double targetPos1 = (double) (75.0000000/360.00000000);//change the value infront of /360.0000000 if you want to mess with angles
-	double targetPos2 = (double) (90.0000000/360.00000000);//MAKE SURE TO KEEP ALL THE FLOATING ZEROS!
+	double targetPos2 = (double) (87.0000000/360.00000000);//MAKE SURE TO KEEP ALL THE FLOATING ZEROS!
 
 	boolean firstRun = true;
 	public Elevator() {
@@ -52,7 +52,8 @@ public class Elevator extends Subsystem {
 		elevR.configPeakOutputVoltage(+12f, -12f);
 		/*
 		 * set the allowable closed-loop error, Closed-Loop output will be
-		 * neutral within this range. See Table in Section 17.2.1 for native
+		 * neutral within this range. See Table in Section 17.2.1 of 
+		 * the CTRE software reference manual for native
 		 * units per rotation.
 		 */
 		elevR.setAllowableClosedLoopErr(0); /* always servo */
@@ -60,8 +61,8 @@ public class Elevator extends Subsystem {
 		elevR.setProfile(0);
 		elevR.setF(0.0);
 		elevR.setP(0.8);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
-		elevR.setI(0.0);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
-		elevR.setD(0.0);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
+		elevR.setI(0.0);//0009DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
+		elevR.setD(0.0);//009DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
 		
 		
 		
@@ -135,13 +136,13 @@ public class Elevator extends Subsystem {
 	}
 	public void up() {
 		// shooterElevR.set(-.5);
-		elevL.set(-.25);
+		elevL.set(-.15);
 
 	}
 
 	public void down() {
 		// shooterElevR.set(.5);
-		elevL.set(.25);
+		elevL.set(.1g5);
 
 	}
 

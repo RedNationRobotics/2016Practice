@@ -25,7 +25,7 @@ public class Shooter extends Subsystem {
 	}
 
 	public void in() {
-		shooterWheelL.set(-1);
+		shooterWheelL.set(-.65);
 		// shooterWheelR.set(1);
 
 	}
