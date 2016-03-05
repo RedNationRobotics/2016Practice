@@ -13,6 +13,7 @@ public class DriveWithJoysticks extends Command {
 		// Need requires to run command
 		requires(Robot.chassis);
 		requires(Robot.elevator);
+		requires(Robot.analogPressure);
 		// requires(Robot.shooter); //<======HERE IS YOUR PROBLEM, IT WILL
 		// CANCEL THIS TASK WHEN ANY OTHER TASK REQUIRING SHOOTER RUNS (I.E.
 		// YOUR BUTTONS)
@@ -40,6 +41,7 @@ public class DriveWithJoysticks extends Command {
 		// Robot.elevator.gamePadControl(Robot.shooterStick);
 
 		Robot.elevator.elevatorTeleop(Robot.shooterStick);
+		
 	}
 
 	@Override

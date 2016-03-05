@@ -3,6 +3,7 @@ package org.usfirst.frc.team4576.robot;
 import org.usfirst.frc.team4576.robot.commands.AutoEnableCompressor;
 import org.usfirst.frc.team4576.robot.commands.Autonomous;
 import org.usfirst.frc.team4576.robot.commands.DriveWithJoysticks;
+import org.usfirst.frc.team4576.robot.subsystems.AnalogPressure;
 import org.usfirst.frc.team4576.robot.subsystems.Chassis;
 import org.usfirst.frc.team4576.robot.subsystems.Elevator;
 //import org.usfirst.frc.team4576.robot.subsystems.OnboardAccel;
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static final Shooter shooter = new Shooter();
 	public static final Elevator elevator = new Elevator();
 	// public static final OnboardAccel accel = new OnboardAccel();
+	public static final AnalogPressure analogPressure = new AnalogPressure();
 
 	public static OI oi;
 	public static Joystick driveStick = new Joystick(0);

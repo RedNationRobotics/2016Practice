@@ -14,7 +14,7 @@ public class Elevator extends Subsystem {
 	StringBuilder _sb = new StringBuilder();
 	int _loops = 0;
 	boolean _lastButton1 = false;
-	boolean lastButton2 = false;
+	boolean _lastButton2 = false;
 
 		public CANTalon elevL = new CANTalon(4);
 		public CANTalon elevR = new CANTalon(5);
@@ -102,7 +102,7 @@ public class Elevator extends Subsystem {
 			elevR.set(targetPos1); /*50 rotations in either direction*/
 
 		}
-		if (!lastButton2 && button2) {
+		if (!_lastButton2 && button2) {
 			
 			elevR.changeControlMode(TalonControlMode.Position);
 			elevR.set(targetPos2); /*50 rotations in either direction*/
@@ -132,7 +132,7 @@ public class Elevator extends Subsystem {
 		_sb.setLength(0);
 		/* save button state for on press detect */
 		_lastButton1 = button1;
-		lastButton2 = button2;
+		_lastButton2 = button2;
 	}
 	public void up() {
 		// shooterElevR.set(-.5);
@@ -142,7 +142,7 @@ public class Elevator extends Subsystem {
 
 	public void down() {
 		// shooterElevR.set(.5);
-		elevL.set(.1g5);
+		elevL.set(.15);
 
 	}
 
