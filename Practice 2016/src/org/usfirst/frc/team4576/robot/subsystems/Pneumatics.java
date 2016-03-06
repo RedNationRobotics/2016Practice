@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Pneumatics extends Subsystem {
 	private Compressor c;
-	private Solenoid s0 = new Solenoid(0);/* Shifting */
+	//private Solenoid s0 = new Solenoid(0);/* Shifting */
     private Solenoid s2 = new Solenoid(2);/* EXTEND 2 and 4 are bigggg piston 2-extending 4-retracting*/
 	private Solenoid s3 = new Solenoid(3);/* Firing */
 	private Solenoid s4 = new Solenoid(4);/* RETRACT */
@@ -22,7 +22,7 @@ public class Pneumatics extends Subsystem {
 		c.setClosedLoopControl(true);
 	}
 
-	public void setShift(boolean closed) {
+	/*public void setShift(boolean closed) {
 		s0.set(closed);
 	}
 
@@ -30,7 +30,13 @@ public class Pneumatics extends Subsystem {
 		s0.set(!s0.get());
 
 	}
-
+*/
+	public void toggleComp() {
+		if (c.enabled())
+			c.stop();
+		else
+			c.start();
+	}
 	public void setPush(boolean closed) {
 		s3.set(closed);
 	}

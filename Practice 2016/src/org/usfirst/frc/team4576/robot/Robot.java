@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4576.robot;
 
-import org.usfirst.frc.team4576.robot.commands.AutoEnableCompressor;
 import org.usfirst.frc.team4576.robot.commands.Autonomous;
 import org.usfirst.frc.team4576.robot.commands.DriveWithJoysticks;
 import org.usfirst.frc.team4576.robot.subsystems.AnalogPressure;
@@ -36,7 +35,6 @@ public class Robot extends IterativeRobot {
 	public static Joystick shooterStick = new Joystick(1);
 
 	Command teleopCommand;
-	Command compressorStart;
 	Command autonomousCommand;
 
 	String VERSION = "1.0 BETA";
@@ -50,7 +48,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		teleopCommand = new DriveWithJoysticks();
 		autonomousCommand = new Autonomous();
-		compressorStart = new AutoEnableCompressor();
 
 		// instantiate the command used for the autonomous period
 
@@ -71,7 +68,6 @@ public class Robot extends IterativeRobot {
 	 public void teleopInit() {
 		    if (autonomousCommand != null) autonomousCommand.cancel();
 			teleopCommand.start();
-			compressorStart.start();
 
 		}
 	
