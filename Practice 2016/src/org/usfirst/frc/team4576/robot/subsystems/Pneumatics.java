@@ -67,11 +67,21 @@ public class Pneumatics extends Subsystem {
 		s4.set(!b);
 	}
 private AnalogInput input;
-	
+
+	/**
+	 * please remember, when you call a method, it runs the code in the method, so since all of this code
+	 * was outside of the method, in the class instead, it ran once on startup, probably before the analog 
+	 * channel was even close to being initialized
+	 * 
+	 * you want to read the pressure value every time you call this, not once on startup
+	 * 
+	 * also this is a getter method, it has "get" in the name, it should return the value it is getting, not void
+	 */
+	public double getPressure(){
 	/**
 	 * The input voltage provided to the sensor
 	 */
-	private double inputVoltage = input.getVoltage();
+	double inputVoltage = input.getVoltage();
 	
 	/**
 	 * What to use if we are no provided with another input voltage
@@ -81,12 +91,12 @@ private AnalogInput input;
 	/**
 	 * The slope of the conversion of the return volts to pressure. From documentation.
 	 */
-	private final int SLOPE = 250;
+	final int SLOPE = 250;
 	
 	/**
 	 * The Y intercept of the conversion of the return volts to pressure. From the docs. 
 	 */
-	private final int Y_INTERCEPT = -25;
+	final int Y_INTERCEPT = -25;
 	
 	double pressure = SLOPE * (psensor.getVoltage()/inputVoltage) + Y_INTERCEPT;
 	
@@ -94,7 +104,8 @@ private AnalogInput input;
 	 * Formula comes from the official documentation
 	 * @return 
 	 */
-	public void getPressure(){
+	
 		SmartDashboard.putNumber("Pressure:", pressure); 
+		return pressure;
 	}
 }
