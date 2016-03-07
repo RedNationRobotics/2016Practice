@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4576.robot.subsystems;
+	package org.usfirst.frc.team4576.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
@@ -66,35 +66,5 @@ public class Pneumatics extends Subsystem {
 		s2.set(b);
 		s4.set(!b);
 	}
-private AnalogInput input;
-	
-	/**
-	 * The input voltage provided to the sensor
-	 */
-	private double inputVoltage = input.getVoltage();
-	
-	/**
-	 * What to use if we are no provided with another input voltage
-	 */
-	//private final static double DEFAULT_VOLTAGE = 5.0;
-	
-	/**
-	 * The slope of the conversion of the return volts to pressure. From documentation.
-	 */
-	private final int SLOPE = 250;
-	
-	/**
-	 * The Y intercept of the conversion of the return volts to pressure. From the docs. 
-	 */
-	private final int Y_INTERCEPT = -25;
-	
-	double pressure = SLOPE * (psensor.getVoltage()/inputVoltage) + Y_INTERCEPT;
-	
-	/**
-	 * Formula comes from the official documentation
-	 * @return 
-	 */
-	public void getPressure(){
-		SmartDashboard.putNumber("Pressure:", pressure); 
-	}
+
 }
