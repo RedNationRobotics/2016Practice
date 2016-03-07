@@ -1,11 +1,10 @@
 package org.usfirst.frc.team4576.robot;
 
-import org.usfirst.frc.team4576.robot.commands.Autonomous;
+import org.usfirst.frc.team4576.robot.commands.AutoDefence;
+import org.usfirst.frc.team4576.robot.commands.AutoLowBar;
 import org.usfirst.frc.team4576.robot.commands.DriveWithJoysticks;
-import org.usfirst.frc.team4576.robot.subsystems.AnalogPressure;
 import org.usfirst.frc.team4576.robot.subsystems.Chassis;
 import org.usfirst.frc.team4576.robot.subsystems.Elevator;
-//import org.usfirst.frc.team4576.robot.subsystems.OnboardAccel;
 import org.usfirst.frc.team4576.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team4576.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -13,6 +12,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,15 +28,14 @@ public class Robot extends IterativeRobot {
 	public static final Pneumatics pneumatics = new Pneumatics();
 	public static final Shooter shooter = new Shooter();
 	public static final Elevator elevator = new Elevator();
-	// public static final OnboardAccel accel = new OnboardAccel();
-	public static final AnalogPressure analogPressure = new AnalogPressure();
-
+	//public static final AnalogPressure analogPressure = new AnalogPressure();
 	public static OI oi;
 	public static Joystick driveStick = new Joystick(0);
 	public static Joystick shooterStick = new Joystick(1);
 
 	Command teleopCommand;
 	Command autonomousCommand;
+	SendableChooser chooser;
 
 	String VERSION = "1.0 BETA";
 
@@ -46,31 +46,52 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		System.out.println("RNR 2016 Practice Code Version " + VERSION + " is loading... But will it work?");
 		oi = new OI();
+		chooser = new SendableChooser();
+		chooser.addDefault("Default Auto", new AutoDefence());
+		// chooser.addObject("My Auto", new MyAutoCommand());
+		SmartDashboard.putData("Auto mode", chooser);
 		teleopCommand = new DriveWithJoysticks();
-		autonomousCommand = new Autonomous();
+		autonomousCommand = new AutoDefence();
+		autonomousCommand = new AutoLowBar();
 
 		// instantiate the command used for the autonomous period
 
 	}
+
 	public void disabledPeriodic() {
-			Scheduler.getInstance().run();
+		Scheduler.getInstance().run();
 
-		}
+	}
+
 	public void autonomousInit() {
-		// added <autochooser.getSelected();> might be wrong (s)
+autonomousCommand = (Command) chooser.getSelected();
+        
+		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+		switch(autoSelected) {
+		case "My Auto":
+			autonomousCommand = new MyAutoCommand();
+			break;
+		case "Default Auto":
+		default:
+			autonomousCommand = new ExampleCommand();
+			break;
+		} */
+    	
+    	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
-
+		// added <autochooser.getSelected();> might be wrong (s)
 	}
+
 	public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+		Scheduler.getInstance().run();
 	}
-	
-	 public void teleopInit() {
-		    if (autonomousCommand != null) autonomousCommand.cancel();
-			teleopCommand.start();
 
-		}
-	
+	public void teleopInit() {
+		if (autonomousCommand != null)autonomousCommand.cancel();
+		teleopCommand.start();
+
+	}
+
 	/**
 	 * This function is called when the disabled button is hit. You can use it
 	 * to reset subsystems before shutting down.

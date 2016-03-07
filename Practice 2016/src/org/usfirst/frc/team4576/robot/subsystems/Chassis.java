@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 //import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -18,6 +19,7 @@ public class Chassis extends Subsystem {
 		tsrxR2.set(tsrxR.getDeviceID());
 		// ******Commented out encoder to troubleshoot******
 		// System.out.println("quadEncoderPos" + quadEncoderPos);
+		
 
 	}
 	// Put methods for controlling this subsystem
@@ -29,6 +31,8 @@ public class Chassis extends Subsystem {
 	public CANTalon tsrxR = new CANTalon(1);
 	public CANTalon tsrxL2 = new CANTalon(2);
 	public CANTalon tsrxR2 = new CANTalon(3);
+	
+	
 	// ******Commented out encoder to troubleshoot******
 	// double quadEncoderPos = tsrxR.getEncPosition();
 

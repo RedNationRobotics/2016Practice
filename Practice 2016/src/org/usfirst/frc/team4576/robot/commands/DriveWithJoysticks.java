@@ -4,6 +4,7 @@ import org.usfirst.frc.team4576.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveWithJoysticks extends Command {
 
@@ -13,7 +14,7 @@ public class DriveWithJoysticks extends Command {
 		// Need requires to run command
 		requires(Robot.chassis);
 		requires(Robot.elevator);
-		requires(Robot.analogPressure);
+		//requires(Robot.analogPressure);
 		// requires(Robot.shooter); //<======HERE IS YOUR PROBLEM, IT WILL
 		// CANCEL THIS TASK WHEN ANY OTHER TASK REQUIRING SHOOTER RUNS (I.E.
 		// YOUR BUTTONS)
@@ -31,6 +32,7 @@ public class DriveWithJoysticks extends Command {
 	protected void execute() {
 		// TODO Auto-generated method stub
 		Robot.chassis.normalDrive();
+		
 		// Robot.accel.refresh();
 
 		// SmartDashboard.putNumber("accelX: ",Robot.accel.getX());
@@ -42,7 +44,8 @@ public class DriveWithJoysticks extends Command {
 
 		Robot.elevator.elevatorTeleop(Robot.shooterStick);
 		
-	}
+    }
+	
 
 	@Override
 	protected boolean isFinished() {
