@@ -9,13 +9,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Pneumatics extends Subsystem {
 	
+	public Pneumatics() {
+		psensor = new AnalogInput(0);
+		//s0 = new Solenoid(0);/* Shifting */
+		s2 = new Solenoid(2);/* EXTEND 2 and 4 are bigggg piston 2-extending 4-retracting*/
+		s3 = new Solenoid(3);/* Firing */
+		s4 = new Solenoid(4);/* RETRACT */
+	}
+	
 	private Compressor c;
-	public AnalogInput psensor = new AnalogInput(1);
-	//private Solenoid s0 = new Solenoid(0);/* Shifting */
-    private Solenoid s2 = new Solenoid(2);/* EXTEND 2 and 4 are bigggg piston 2-extending 4-retracting*/
-	private Solenoid s3 = new Solenoid(3);/* Firing */
-	private Solenoid s4 = new Solenoid(4);/* RETRACT */
+	public AnalogInput psensor;
+	//private Solenoid s0;
+    private Solenoid s2;
+	private Solenoid s3;
+	private Solenoid s4;
 
+	
+	
 	@Override
 	protected void initDefaultCommand() {
 		c = new Compressor();
@@ -81,29 +91,20 @@ private AnalogInput input;
 	/**
 	 * The input voltage provided to the sensor
 	 */
-	double inputVoltage = input.getVoltage();
+	double inputVoltage = 5;
 	
 	/**
 	 * What to use if we are no provided with another input voltage
 	 */
 	//private final static double DEFAULT_VOLTAGE = 5.0;
 	
-	/**
-	 * The slope of the conversion of the return volts to pressure. From documentation.
-	 */
-	final int SLOPE = 250;
 	
-	/**
-	 * The Y intercept of the conversion of the return volts to pressure. From the docs. 
-	 */
-	final int Y_INTERCEPT = -25;
 	
-	double pressure = SLOPE * (psensor.getVoltage()/inputVoltage) + Y_INTERCEPT;
+
 	
-	/**
-	 * Formula comes from the official documentation
-	 * @return 
-	 */
+	double pressure = (250 * (psensor.getVoltage()/inputVoltage) - 25);
+	
+	
 	
 		SmartDashboard.putNumber("Pressure:", pressure); 
 		return pressure;
