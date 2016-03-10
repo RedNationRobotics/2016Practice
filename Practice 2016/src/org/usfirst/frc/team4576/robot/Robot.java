@@ -2,6 +2,9 @@ package org.usfirst.frc.team4576.robot;
 
 import org.usfirst.frc.team4576.robot.commands.AutoDefence;
 import org.usfirst.frc.team4576.robot.commands.AutoLowBar;
+import org.usfirst.frc.team4576.robot.commands.AutoLowBar2;
+import org.usfirst.frc.team4576.robot.commands.AutoRTerrain;
+import org.usfirst.frc.team4576.robot.commands.AutoRTerrain2;
 import org.usfirst.frc.team4576.robot.commands.DriveWithJoysticks;
 import org.usfirst.frc.team4576.robot.subsystems.Chassis;
 import org.usfirst.frc.team4576.robot.subsystems.Elevator;
@@ -37,22 +40,34 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser chooser;
 
-	String VERSION = "1.0 BETA";
+	String VERSION = "1.0";
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		System.out.println("RNR 2016 Practice Code Version " + VERSION + " is loading... But will it work?");
+		System.out.println("RNR 2016 Code Version " + VERSION + " is loading... But will it work?");
 		oi = new OI();
 		chooser = new SendableChooser();
-		chooser.addDefault("Default Auto", new AutoDefence());
+		chooser.addDefault("Auto: Roll to defence", new AutoDefence());
+		chooser.addObject("Auto: Cross LBar then stop", new AutoLowBar());
+		chooser.addObject("Auto: Cross LBar, Rotate, Cross again", new AutoLowBar2());
+		chooser.addObject("Auto: Cross RTerrain then stop", new AutoRTerrain());
+		chooser.addObject("Auto: Cross RTerrain, Rotate, Cross again", new AutoRTerrain2());
+
+		
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		teleopCommand = new DriveWithJoysticks();
 		autonomousCommand = new AutoDefence();
 		autonomousCommand = new AutoLowBar();
+		autonomousCommand = new AutoLowBar2();
+		autonomousCommand = new AutoRTerrain();
+		autonomousCommand = new AutoRTerrain2();
+
+
+		
 
 		// instantiate the command used for the autonomous period
 

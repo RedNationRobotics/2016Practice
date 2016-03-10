@@ -76,8 +76,9 @@ public class OI {
 		ssLB.whenReleased(new ShooterStop());
 		ssR3.whenPressed(new Push());
 		ssR3.whenReleased(new Push());
+		
 		dsB.whenPressed(new ToggleCompressor());
 		dsY.whenPressed(new Climbing());
-		//dsX.whenPressed(new Shift());
+		
 	}
 }

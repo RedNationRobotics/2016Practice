@@ -27,7 +27,6 @@ public class ShooterElev extends Command {
 
 		}
 
-		// robot.go.methodes and shit.
 	}
 
 	@Override

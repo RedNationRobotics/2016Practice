@@ -58,8 +58,6 @@ public class Pneumatics extends Subsystem {
 
 	public void push() {
 		s3.set(!s3.get());
-		// Timer.delay(1);
-		// s2.set(s2.get());
 
 	}
 	

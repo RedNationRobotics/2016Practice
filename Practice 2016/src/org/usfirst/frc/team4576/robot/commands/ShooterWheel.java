@@ -14,7 +14,6 @@ public class ShooterWheel extends Command {
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
 		if (in) {
 			Robot.shooter.in();
 		} else {
@@ -24,26 +23,22 @@ public class ShooterWheel extends Command {
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		// changed to true to check issues
 		return false;
 	}
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
 		Robot.shooter.stop();
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
 
 	}
 

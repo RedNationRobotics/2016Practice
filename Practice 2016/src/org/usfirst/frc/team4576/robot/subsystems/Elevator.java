@@ -28,7 +28,7 @@ public class Elevator extends Subsystem {
 		// Practice Bot, but vice versa on Comp Bot
 		elevL.changeControlMode(CANTalon.TalonControlMode.Follower);
 		elevL.set(elevR.getDeviceID());
-		elevL.reverseOutput(true);
+		//elevL.reverseOutput(true);
 		
 		/*
 		 * lets grab the 360 degree position of the MagEncoder's absolute
