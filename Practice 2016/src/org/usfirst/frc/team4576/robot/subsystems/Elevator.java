@@ -16,53 +16,53 @@ public class Elevator extends Subsystem {
 	boolean _lastButton1 = false;
 	boolean _lastButton2 = false;
 
+		public CANTalon elevR = new CANTalon(5); /* Inversed numbers to compensate for difference from practice bot */
 		public CANTalon elevL = new CANTalon(4);
-		public CANTalon elevR = new CANTalon(5);
 	/** save the target position to servo to */
-	double targetPos1 = (double) (75.0000000/360.00000000);//change the value infront of /360.0000000 if you want to mess with angles
+	double targetPos1 = (double) (75.0000000/360.00000000);//change the value in front of /360.0000000 if you want to mess with angles
 	double targetPos2 = (double) (87.0000000/360.00000000);//MAKE SURE TO KEEP ALL THE FLOATING ZEROS!
 
 	boolean firstRun = true;
 	public Elevator() {
 		// Because we are dumb, shooterElevL must follow shooterElevR on
 		// Practice Bot, but vice versa on Comp Bot
-		elevL.changeControlMode(CANTalon.TalonControlMode.Follower);
-		elevL.set(elevR.getDeviceID());
-		//elevL.reverseOutput(true);
+		elevR.changeControlMode(CANTalon.TalonControlMode.Follower);
+		elevR.set(elevL.getDeviceID());
+		elevR.reverseOutput(true);
 		
 		/*
 		 * lets grab the 360 degree position of the MagEncoder's absolute
 		 * position
 		 */
-		int absolutePosition = elevR.getPulseWidthPosition() & 0xFFF; /*mask out the bottom12 bits, we don't care about the wrap arounds */
+		int absolutePosition = elevL.getPulseWidthPosition() & 0xFFF; /*mask out the bottom12 bits, we don't care about the wrap arounds */
 		
 		/* use the low level API to set the quad encoder signal */
-		elevR.setEncPosition(absolutePosition);
+		elevL.setEncPosition(absolutePosition);
 
 		/* choose the sensor and sensor direction */
-		elevR.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		elevR.reverseSensor(true);
+		elevL.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		elevL.reverseSensor(true);
 		// _talon.configEncoderCodesPerRev(XXX), // if using
 		// FeedbackDevice.QuadEncoder
 		// _talon.configPotentiometerTurns(XXX), // if using
 		// FeedbackDevice.AnalogEncoder or AnalogPot
 
 		/* set the peak and nominal outputs, 12V means full */
-		elevR.configNominalOutputVoltage(+0f, -0f);
-		elevR.configPeakOutputVoltage(+12f, -12f);
+		elevL.configNominalOutputVoltage(+0f, -0f);
+		elevL.configPeakOutputVoltage(+12f, -12f);
 		/*
 		 * set the allowable closed-loop error, Closed-Loop output will be
 		 * neutral within this range. See Table in Section 17.2.1 of 
 		 * the CTRE software reference manual for native
 		 * units per rotation.
 		 */
-		elevR.setAllowableClosedLoopErr(0); /* always servo */
+		elevL.setAllowableClosedLoopErr(0); /* always servo */
 		/* set closed loop gains in slot0 */
-		elevR.setProfile(0);
-		elevR.setF(0.0);
-		elevR.setP(0.8);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
-		elevR.setI(0.0);//0009DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
-		elevR.setD(0.0);//009DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
+		elevL.setProfile(0);
+		elevL.setF(0.0);
+		elevL.setP(0.8);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
+		elevL.setI(0.0);//0009DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
+		elevL.setD(0.0);//009DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
 		
 		
 		
@@ -79,46 +79,46 @@ public class Elevator extends Subsystem {
 	{
 		if(firstRun)
 		{
-			targetPos1 += elevR.getPosition();
-			targetPos2 += elevR.getPosition();
+			targetPos1 += elevL.getPosition();
+			targetPos2 += elevL.getPosition();
 			firstRun = !firstRun;
 		}
 		/* get gamepad axis */
 		double leftYstick = -_joy.getAxis(AxisType.kY)/2;
-		double motorOutput = elevR.getOutputVoltage() / elevR.getBusVoltage();
+		double motorOutput = elevL.getOutputVoltage() / elevL.getBusVoltage();
 		boolean button1 = _joy.getRawButton(1);
 		boolean button2 = _joy.getRawButton(2);
 		boolean button3 = _joy.getRawButton(3);
 		/* prepare line to print */
-		_sb.append("45 is set to: " + targetPos1 + " which should be .125 rotations from intial\n");
-		_sb.append("\tout:");
+		//_sb.append("45 is set to: " + targetPos1 + " which should be .125 rotations from intial\n");
+		//_sb.append("\tout:");
 		_sb.append(motorOutput);
 		_sb.append("\tpos:");
-		_sb.append(elevR.getPosition());
+		_sb.append(elevL.getPosition());
 		/* on button1 press enter closed-loop mode on target position */
 		if (!_lastButton1 && button1) {
 			
-			elevR.changeControlMode(TalonControlMode.Position);
-			elevR.set(targetPos1); /*50 rotations in either direction*/
+			elevL.changeControlMode(TalonControlMode.Position);
+			elevL.set(targetPos1); /*50 rotations in either direction*/
 
 		}
 		if (!_lastButton2 && button2) {
 			
-			elevR.changeControlMode(TalonControlMode.Position);
-			elevR.set(targetPos2); /*50 rotations in either direction*/
+			elevL.changeControlMode(TalonControlMode.Position);
+			elevL.set(targetPos2); /*50 rotations in either direction*/
 
 		}
 		
 		if (button3) {
-			elevR.changeControlMode(TalonControlMode.PercentVbus);
+			elevL.changeControlMode(TalonControlMode.PercentVbus);
 		}
 		
-		if(elevR.getControlMode() == TalonControlMode.PercentVbus) elevR.set(leftYstick);
+		if(elevL.getControlMode() == TalonControlMode.PercentVbus) elevL.set(leftYstick);
 		/* if Talon is in position closed-loop, print some more info */
-		if (elevR.getControlMode() == TalonControlMode.Position) {
+		if (elevL.getControlMode() == TalonControlMode.Position) {
 			/* append more signals to print when in speed mode. */
 			_sb.append("\terrNative:");
-			_sb.append(elevR.getClosedLoopError());
+			_sb.append(elevL.getClosedLoopError());
 			_sb.append("\ttrg:");
 			_sb.append(targetPos1);
 		}
@@ -127,7 +127,7 @@ public class Elevator extends Subsystem {
 		 */
 		if (++_loops >= 10) {
 			_loops = 0;
-			//System.out.println(_sb.toString());
+			System.out.println(_sb.toString());
 		}
 		_sb.setLength(0);
 		/* save button state for on press detect */
@@ -136,13 +136,13 @@ public class Elevator extends Subsystem {
 	}
 	public void up() {
 		// shooterElevR.set(-.5);
-		elevL.set(-.15);
+		elevL.set(.15);
 
 	}
 
 	public void down() {
 		// shooterElevR.set(.5);
-		elevL.set(.15);
+		elevL.set(-.15);
 
 	}
 
@@ -157,17 +157,17 @@ public class Elevator extends Subsystem {
 		// System.out.println(stick.getRawAxis(3) + " " + stick.getRawAxis(2));
 		if (stick.getRawAxis(3) - stick.getRawAxis(2) < 0 && stick.getRawAxis(3) - stick.getRawAxis(2) > -0.1) {
 			// shooterElevR.set(0);
-			elevR.set(0);
+			elevL.set(0);
 			return;
 		}
 
 		if (stick.getRawAxis(3) - stick.getRawAxis(2) > 0 && stick.getRawAxis(3) - stick.getRawAxis(2) < 0.1) {
 			// shooterElevR.set(0);
-			elevR.set(0);
+			elevL.set(0);
 			return;
 		}
 
-		elevR.set(stick.getRawAxis(3) - stick.getRawAxis(2));
+		elevL.set(stick.getRawAxis(3) - stick.getRawAxis(2));
 		// shooterElevL.set(stick.getRawAxis(3) - stick.getRawAxis(2));
 	}
 
