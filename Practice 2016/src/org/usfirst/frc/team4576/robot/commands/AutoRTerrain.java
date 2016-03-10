@@ -5,34 +5,33 @@ import org.usfirst.frc.team4576.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoLowBar extends Command{
+public class AutoRTerrain extends Command {
 
 	@Override
 	protected void initialize() {
 		Robot.chassis.initAuto();
-		
 	}
 
 	@Override
 	protected void execute() {
-		Robot.chassis.setLeftRight(-0.5,0.5);
+		Robot.chassis.setLeftRight(-0.5, 0.5);
 		Timer.delay(2.0);
-		
 	}
 
 	@Override
 	protected boolean isFinished() {
+
 		return false;
 	}
 
 	@Override
 	protected void end() {
-		
+
 	}
 
 	@Override
 	protected void interrupted() {
-		
+
 	}
 
 }
