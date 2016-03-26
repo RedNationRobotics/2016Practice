@@ -12,7 +12,7 @@ public class DriveWithJoysticks extends Command {
 		// Need requires to run command
 		requires(Robot.chassis);
 		requires(Robot.elevator);
-		requires(Robot.pneumatics);
+		//requires(Robot.pneumatics);
 		//requires(Robot.analogPressure);
 		// requires(Robot.shooter); //<======HERE IS YOUR PROBLEM, IT WILL
 		// CANCEL THIS TASK WHEN ANY OTHER TASK REQUIRING SHOOTER RUNS (I.E.
@@ -31,7 +31,7 @@ public class DriveWithJoysticks extends Command {
 	protected void execute() {
 		// TODO Auto-generated method stub
 		Robot.chassis.normalDrive();
-		System.out.println(Robot.pneumatics.getPressure());;
+		//System.out.println(Robot.pneumatics.getPressure());;
 		// Robot.accel.refresh();
 
 		// SmartDashboard.putNumber("accelX: ",Robot.accel.getX());

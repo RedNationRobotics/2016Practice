@@ -1,15 +1,17 @@
 package org.usfirst.frc.team4576.robot;
 
 import org.usfirst.frc.team4576.robot.commands.AutoDefence;
+import org.usfirst.frc.team4576.robot.commands.AutoEnableCompressor;
 import org.usfirst.frc.team4576.robot.commands.AutoLowBar;
-import org.usfirst.frc.team4576.robot.commands.AutoLowBar2;
 import org.usfirst.frc.team4576.robot.commands.AutoRTerrain;
-import org.usfirst.frc.team4576.robot.commands.AutoRTerrain2;
+import org.usfirst.frc.team4576.robot.commands.CheeseRockWall;
 import org.usfirst.frc.team4576.robot.commands.DriveWithJoysticks;
 import org.usfirst.frc.team4576.robot.subsystems.Chassis;
 import org.usfirst.frc.team4576.robot.subsystems.Elevator;
 import org.usfirst.frc.team4576.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team4576.robot.subsystems.Shooter;
+
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -35,12 +37,15 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Joystick driveStick = new Joystick(0);
 	public static Joystick shooterStick = new Joystick(1);
+	
 
 	Command teleopCommand;
 	Command autonomousCommand;
+	Command compressorStart;
+	CameraServer server;
 	SendableChooser chooser;
 
-	String VERSION = "1.0";
+	String VERSION = "2.0";
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -51,22 +56,26 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		chooser = new SendableChooser();
 		chooser.addDefault("Auto: Roll to defence", new AutoDefence());
-		chooser.addObject("Auto: Cross LBar then stop", new AutoLowBar());
-		chooser.addObject("Auto: Cross LBar, Rotate, Cross again", new AutoLowBar2());
-		chooser.addObject("Auto: Cross RTerrain then stop", new AutoRTerrain());
-		chooser.addObject("Auto: Cross RTerrain, Rotate, Cross again", new AutoRTerrain2());
+		chooser.addObject("Auto: Cross LowBar then stop", new AutoLowBar());
+		chooser.addObject("Auto: Cross RoughTerrain then stop", new AutoRTerrain());
+		chooser.addObject("Auto: QUESO", new CheeseRockWall());
+
 
 		
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		teleopCommand = new DriveWithJoysticks();
+		compressorStart = new AutoEnableCompressor();
 		autonomousCommand = new AutoDefence();
 		autonomousCommand = new AutoLowBar();
-		autonomousCommand = new AutoLowBar2();
 		autonomousCommand = new AutoRTerrain();
-		autonomousCommand = new AutoRTerrain2();
+		autonomousCommand = new CheeseRockWall();
 
 
+		server = CameraServer.getInstance();
+	    server.setQuality(15);
+	        //the camera name (ex "cam0") can be found through the roborio web interface
+	    server.startAutomaticCapture("cam0");
 		
 
 		// instantiate the command used for the autonomous period
@@ -104,6 +113,7 @@ autonomousCommand = (Command) chooser.getSelected();
 	public void teleopInit() {
 		if (autonomousCommand != null)autonomousCommand.cancel();
 		teleopCommand.start();
+		compressorStart.start();
 
 	}
 

@@ -19,8 +19,8 @@ public class Elevator extends Subsystem {
 		public CANTalon elevR = new CANTalon(5); /* Inversed numbers to compensate for difference from practice bot */
 		public CANTalon elevL = new CANTalon(4);
 	/** save the target position to servo to */
-	double targetPos1 = (double) (75.0000000/360.00000000);//change the value in front of /360.0000000 if you want to mess with angles
-	double targetPos2 = (double) (87.0000000/360.00000000);//MAKE SURE TO KEEP ALL THE FLOATING ZEROS!
+	double targetPos1 = (double) (10.0000000/360.00000000);//change the value in front of /360.0000000 if you want to mess with angles
+	double targetPos2 = (double) (12.0000000/360.00000000);//MAKE SURE TO KEEP ALL THE FLOATING ZEROS!
 
 	boolean firstRun = true;
 	public Elevator() {
@@ -60,7 +60,7 @@ public class Elevator extends Subsystem {
 		/* set closed loop gains in slot0 */
 		elevL.setProfile(0);
 		elevL.setF(0.0);
-		elevL.setP(0.8);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
+		elevL.setP(0.5);//DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
 		elevL.setI(0.0);//0009DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
 		elevL.setD(0.0);//009DON'T FCK WITH THE PID VALUES DUMB BUILD TEAM MEMBERS
 		
@@ -136,13 +136,13 @@ public class Elevator extends Subsystem {
 	}
 	public void up() {
 		// shooterElevR.set(-.5);
-		elevL.set(.15);
+		elevL.set(.05);
 
 	}
 
 	public void down() {
 		// shooterElevR.set(.5);
-		elevL.set(-.15);
+		elevL.set(-.05);
 
 	}
 

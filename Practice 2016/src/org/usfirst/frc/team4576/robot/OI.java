@@ -2,8 +2,9 @@ package org.usfirst.frc.team4576.robot;
 
 import org.usfirst.frc.team4576.robot.commands.Climbing;
 import org.usfirst.frc.team4576.robot.commands.ShooterWheel;
-import org.usfirst.frc.team4576.robot.commands.ToggleCompressor;
+//import org.usfirst.frc.team4576.robot.commands.ToggleCompressor;
 import org.usfirst.frc.team4576.robot.commands.Push;
+import org.usfirst.frc.team4576.robot.commands.Shift;
 //import org.usfirst.frc.team4576.robot.subsystems.Shooter;
 import org.usfirst.frc.team4576.robot.commands.ShooterStop;
 
@@ -64,7 +65,7 @@ public class OI {
 	Button ssRB = new JoystickButton(Robot.shooterStick, 5);
 	Button ssLB = new JoystickButton(Robot.shooterStick, 6);
 	Button ssR3 = new JoystickButton(Robot.shooterStick, 10);
-
+	
 	Button dsY = new JoystickButton(Robot.driveStick, 4);
 	Button dsX = new JoystickButton(Robot.driveStick, 3);
 	Button dsB = new JoystickButton(Robot.driveStick, 2);
@@ -76,8 +77,8 @@ public class OI {
 		ssLB.whenReleased(new ShooterStop());
 		ssR3.whenPressed(new Push());
 		ssR3.whenReleased(new Push());
-		
-		dsB.whenPressed(new ToggleCompressor());
+		dsX.whenPressed(new Shift());
+		///dsB.whenPressed(new ToggleCompressor());
 		dsY.whenPressed(new Climbing());
 		
 	}

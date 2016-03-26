@@ -15,18 +15,22 @@ public class AutoLowBar extends Command{
 
 	@Override
 	protected void execute() {
-		Robot.chassis.setLeftRight(-0.5,0.5);
-		Timer.delay(2.0);
+		//-,+ for forward, +,- for backwards
+		Robot.chassis.setLeftRight(0.65,-0.65);
+		Timer.delay(4.5);
+		Robot.chassis.setLeftRight(0, 0);
+
 		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
 	protected void end() {
+	Robot.chassis.setLeftRight(0, 0);
 		
 	}
 

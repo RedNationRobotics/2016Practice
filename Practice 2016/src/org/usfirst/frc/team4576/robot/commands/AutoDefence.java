@@ -15,17 +15,22 @@ public class AutoDefence extends Command {
 
 	@Override
 	protected void execute() {
+		//-,+ for forward, +,- for backwards
 		Robot.chassis.setLeftRight(-0.5, 0.5);
 		Timer.delay(1.5);
+		Robot.chassis.setLeftRight(0, 0);
+
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
 	protected void end() {
+		Robot.chassis.setLeftRight(0, 0);
+		
 
 	}
 
