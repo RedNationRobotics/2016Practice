@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ *  This class manages the major assembly that can raise to fire or climb
  */
 public class Elevator extends Subsystem {
 	StringBuilder _sb = new StringBuilder();

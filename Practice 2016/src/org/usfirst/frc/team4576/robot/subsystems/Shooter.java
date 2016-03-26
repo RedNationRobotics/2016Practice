@@ -6,6 +6,10 @@ import edu.wpi.first.wpilibj.CANTalon;
 //import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
+/**
+ * This class manages the boulder firing mechanics
+ */
 public class Shooter extends Subsystem {
 
 	public Shooter() {
