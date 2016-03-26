@@ -1,20 +1,21 @@
-	package org.usfirst.frc.team4576.robot.subsystems;
+package org.usfirst.frc.team4576.robot.subsystems;
 
-//import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
-//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Pneumatics extends Subsystem {
 	
 	public Pneumatics() {
 		//psensor = new AnalogInput(0);
 		s0 = new Solenoid(0);/* Shifting */
-		s2 = new Solenoid(2);/* EXTEND 2 and 4 are bigggg piston 2-extending 4-retracting*/
+		s2 = new Solenoid(2);/* EXTEND 2 and 4 are big piston 2-extending 4-retracting*/
 		s3 = new Solenoid(1);/* Firing */
 		s4 = new Solenoid(4);/* RETRACT */
+		//s_ = new Solenoid(_); /*Left tomahawk */
+		//s_ = new Solenoid(_); /*Small pistons for climbing */
+
+		
 	}
 	
 	private Compressor c;
@@ -23,13 +24,15 @@ public class Pneumatics extends Subsystem {
     private Solenoid s2;
 	private Solenoid s3;
 	private Solenoid s4;
+	//private Solenoid s(_);
+	//private Solenoid s(_);
 
 	
 	
 	@Override
 	protected void initDefaultCommand() {
 		c = new Compressor();
-		///////////sensor0  = new AnalogPressure (0,5);
+		//sensor0  = new AnalogPressure (0,5);
 	}
 
 	public void setAutoEnabled() {
@@ -43,6 +46,23 @@ public class Pneumatics extends Subsystem {
 
 	public void shift() {
 		s0.set(!s0.get());
+
+	}
+	public void setSecondaryClimb() {
+		//s_.set(closed);
+		
+		
+	}
+	public void secondaryclimb(){
+		
+		//s_.set(!s_.get();
+	}
+	public void setTomahawks(boolean closed) {
+		//s_.set(closed);
+
+	}
+	public void tomahawks() {
+		//s_.set(!s_.get();
 
 	}
 
@@ -65,16 +85,20 @@ public class Pneumatics extends Subsystem {
 	{
 		s2.set(closed);
 		s4.set(!closed);
+		//s_.set(closed); /*Small pistons for climbing */
 	}
 	
 	public void toggleClimb()
 	{
+		
 		boolean b = !s2.get();
 		s2.set(b);
 		s4.set(!b);
-	}
-//private AnalogInput input;
+		//s_.set(!s_.get());
 
+	}
+	
+//private AnalogInput input;
 	/**
 	 * please remember, when you call a method, it runs the code in the method, so since all of this code
 	 * was outside of the method, in the class instead, it ran once on startup, probably before the analog 

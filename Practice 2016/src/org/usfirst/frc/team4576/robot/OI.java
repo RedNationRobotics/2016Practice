@@ -1,13 +1,11 @@
 package org.usfirst.frc.team4576.robot;
 
 import org.usfirst.frc.team4576.robot.commands.Climbing;
+import org.usfirst.frc.team4576.robot.commands.SecondaryClimb;
 import org.usfirst.frc.team4576.robot.commands.ShooterWheel;
-//import org.usfirst.frc.team4576.robot.commands.ToggleCompressor;
-import org.usfirst.frc.team4576.robot.commands.Push;
+import org.usfirst.frc.team4576.robot.commands.TomahawkControl;
 import org.usfirst.frc.team4576.robot.commands.Shift;
-//import org.usfirst.frc.team4576.robot.subsystems.Shooter;
 import org.usfirst.frc.team4576.robot.commands.ShooterStop;
-
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 // Button Values:
@@ -69,17 +67,19 @@ public class OI {
 	Button dsY = new JoystickButton(Robot.driveStick, 4);
 	Button dsX = new JoystickButton(Robot.driveStick, 3);
 	Button dsB = new JoystickButton(Robot.driveStick, 2);
+	Button dsRB = new JoystickButton(Robot.driveStick, 5);
+
 
 	public OI() {
 		ssRB.whenPressed(new ShooterWheel(true));
 		ssLB.whenPressed(new ShooterWheel(false));
 		ssRB.whenReleased(new ShooterStop());
 		ssLB.whenReleased(new ShooterStop());
-		ssR3.whenPressed(new Push());
-		ssR3.whenReleased(new Push());
+		
 		dsX.whenPressed(new Shift());
-		///dsB.whenPressed(new ToggleCompressor());
 		dsY.whenPressed(new Climbing());
+		dsRB.whenPressed(new TomahawkControl());
+		dsB.whenPressed(new SecondaryClimb());
 		
 	}
 }
