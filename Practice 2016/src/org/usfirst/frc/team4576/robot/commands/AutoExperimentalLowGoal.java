@@ -18,7 +18,7 @@ public class AutoExperimentalLowGoal extends Command {
 		//-,+ for forward, +,- for backwards
 		Robot.chassis.setLeftRight(-0.5, 0.5);
 		Timer.delay(1.5);
-		Robot.chassis.setLeftRight(0.5, 0);
+		Robot.chassis.setLeftRight(0.25, 0.25);
 		Timer.delay(0.5);
 		Robot.chassis.setLeftRight(-0.5, 0.5);
 		Timer.delay(1.5);

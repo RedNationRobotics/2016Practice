@@ -15,8 +15,8 @@ public class AutoRTerrain extends Command {
 	@Override
 	protected void execute() {
 		//-,+ for forward, +,- for backwards
-		Robot.chassis.setLeftRight(0.4,-0.4);
-		Timer.delay(4);
+		Robot.chassis.setLeftRight(-0.5,0.5);
+		Timer.delay(3);
 		Robot.chassis.setLeftRight(0, 0);
 
 	}
