@@ -17,13 +17,13 @@ public class AutoExperimentalLowGoal extends Command {
 	protected void execute() {
 		//-,+ for forward, +,- for backwards
 		Robot.chassis.setLeftRight(-0.5, 0.5);
-		Timer.delay(1.0);
+		Timer.delay(1.5);
 		Robot.chassis.setLeftRight(0.5, 0);
 		Timer.delay(0.5);
 		Robot.chassis.setLeftRight(-0.5, 0.5);
-		Timer.delay(1.0);
+		Timer.delay(1.5);
 		Robot.shooter.out();
-		Timer.delay(2.0);
+		Timer.delay(1.5);
 		
 
 	}
